@@ -1,0 +1,3 @@
+FROM store/oracle/serverjre:1.8.0_241-b07
+ADD catalogos-service/catalogos-web/target/catalogos-web-1.0-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-XX:+UseStringDeduplication","-XX:+UseG1GC","-Xmx1024m","-Xms100m","-Dspring.profiles.active=prod","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]

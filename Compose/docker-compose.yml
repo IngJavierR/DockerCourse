@@ -1,0 +1,30 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: "Dockerfile-frontend"
+    ports:
+      - "80:80"
+    depends_on:
+      - catalogos
+    environment:
+      - TZ=America/Mexico_City
+  catalogos:
+    build:
+      context: .
+      dockerfile: "Dockerfile-catalogos"
+    ports:
+      - "8100:8090"
+    depends_on:
+      - postgres
+    environment:
+      - TZ=America/Mexico_City
+  postgres:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    env_file:
+      - database.env
+    environment:
+      - TZ=America/Mexico_City

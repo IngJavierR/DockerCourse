@@ -1,0 +1,60 @@
+version: '3'
+services:
+  catalogos:
+    build:
+      context: .
+      dockerfile: "Dockerfile-catalogos"
+    ports:
+      - "8100:8090"
+    depends_on:
+      - remissionsback
+    environment:
+      - TZ=America/Mexico_City
+  remissionsback:
+    build:
+      context: .
+      dockerfile: "Dockerfile-remisiones-ms"
+    ports:
+      - "3521:8090"
+    environment:
+      - TZ=America/Mexico_City
+  notasentradaback:
+    build:
+      context: .
+      dockerfile: "Dockerfile-notas-entrada-ms"
+    ports:
+      - "3522:8090"
+    environment:
+      - TZ=America/Mexico_City
+  transferenciatiendasback:
+    build:
+      context: .
+      dockerfile: "Dockerfile-transferencia-tiendas-ms"
+    ports:
+      - "3524:8090"
+    environment:
+      - TZ=America/Mexico_City
+  productos:
+    build:
+      context: .
+      dockerfile: "Dockerfile-productos-ms"
+    ports:
+      - "3526:9090"
+    environment:
+      - TZ=America/Mexico_City
+  transferenciatiendasventa:
+    build:
+      context: .
+      dockerfile: "Dockerfile-transferencia-tiendas-venta"
+    ports:
+      - "3527:8090"
+    environment:
+      - TZ=America/Mexico_City
+  clasificacionmercancia:
+    build:
+      context: .
+      dockerfile: "Dockerfile-clasificacion-mercancia-ms"
+    ports:
+      - "3528:8090"
+    environment:
+      - TZ=America/Mexico_City
